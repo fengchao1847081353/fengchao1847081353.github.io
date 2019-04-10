@@ -346,6 +346,40 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/04/10/WEB进阶-实战2注入2/">
+            
+                <span>WEB进阶-实战2注入2</span>
+        </a>
+        <div class="abstract-content">
+            
+title: WEB实战注入Neko’s blog
+WEB进阶-实战2注入链接：http://www.kabelindo.co.id 
+要求是表的最后一个是flag值
+就是一个网站
+
+对这个网站进行注入方法：1.SQLMAP直接跑得到flag值
+
+2.手工注入这个可以说很坑了，使用常规SQL注入爆出来表看不到最后一个。。。
+上百度查询使用数字型注和盲注，直接转载大牛文章
+盲注
+id=24 and (select count(table_name) from information_schema.tables where table_schema=’u9897uwx_kabel’)=22...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/10</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/04/09/WEB进阶-实战2注入/">
             
                 <span>WEB实战注入</span>
@@ -520,9 +554,18 @@ Generat...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 2
+        Total : 3
         </div>
         <!-- search  -->
         
@@ -549,6 +592,11 @@ Generat...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2019/04/10/WEB进阶-实战2注入2/">WEB进阶-实战2注入2</a>
+        </li>
     
     
         <li class="archive-post-item">

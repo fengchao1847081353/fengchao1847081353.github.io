@@ -28,7 +28,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[WEB实战注入]]></title>
+    <title><![CDATA[第2章 Python必须知道成的基础语法]]></title>
     <url>%2F2019%2F04%2F20%2F%E7%AC%AC2%E7%AB%A0%20Python%E5%BF%85%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%2F</url>
     <content type="text"><![CDATA[第2章 Python必须知道成的基础语法本章的知识点 Python文件的扩展名 Python的编码规则 数据类型 变量和常量的定义和使用 运算符及表达式 2.1 Python的文件类型python文件类型分为三种，分别是源代码、字节代码、优化代码。这些代码可以直接运行 2.1.1 源代码Python源代码的扩展名是以py结尾，可在控制台下运行。Python语言写的程序不需要编译成二进制代码，可可以直接运行源代码。pyw是windows下开发图形用户接口。以py和pyw为后缀名的文件可以使用文本工具打开，并修改文件的内容 2.1.2 字节代码Python源文件编译后生成pyc后缀文件，pyc是编译郭的字节文件，这种文件不可以使用文本编辑工具打开或者修改。pyc文件与平台无关，因此Python的程序可以运行在Windows、UNIX、Linux等操作系统上。py文件直接运行即可获得pyc类型的文件，或通过脚本生成该类型的文件。 下面这段脚本可以把hello.py编译为hello.pyc 12import py_compilepy_compile.compile('hello.py') 保存此脚本，运行即可得到hello.pyc文件 2.1.3 优化代码扩展名为pyo的文件是优化过的源文件，pyo类型的文件需要用命令工具生成。pyo文件也不能用文本工具编辑打开或者修改。下面把hello.py文件编译成hello.pyo （1）启动命令窗口，进入hello.py文件所在的目录，例如： 1cd /D D:\developer\python\example\02\2.1 (2)在命令行输入 python-O-m py_compile hello.py,并按回车键。 1python -O -m py_compile hello.py 代码说明 参数“-O”表示生成优化代码 参数“-m”表示把导入的py_compile模块作为脚本运行。编译hello.pyo需要调用py_compile模块的compile()方法 参数“hello.py是待编译的文件名” 最后查看hello.py所在的文件目录，此时目录生成一个名为hello.pyo的文件 2.2 python的编码规范Python语言有一套自己独特的编码规则，包括命名规则、代码书写规则等 2.2.1 命名规则1.变量名、包名、模块名 变量名、包名、模块名通常使用小写，可使用下划线 123401 #变量名、模块名的命名规则02 #Filename: ruleModule.py #可理解为import ruleModule.py或者 import ruleModule0304 _rule_ = "rule infomation" 代码说明 第2行声明模块的名称，模块采用小写。也可以不指定模块名，以py后缀的文件就是一个模块。模块名就是文件名 第4行定义了一个全局变量_rule 2. 类名、对象名 1.类名首字母采用大写，对象采用小写 2.类的 ”属性“ 和 “方法名” 以 ”对象“ 作为前缀。类的私有变量 3.私有方法有一下两个下划线作为前缀。下面这段代码演示了累的定义和实例化的规范写法 4.方法名首字母小写，其后的单词首字母大写 12345678910class Student: #类名大写 __name = "" #私有变量前必须有两个下划线 def __init__(self, name): self.__name = name #self相当于java的this def getName(self): #方法名首字母小写，其后每个单词的首字母大写 return self.__nameif __name__ == "__main__": student = Student("borphi") print(student.getName()) 涉及的函数 123456781.class函数 #创建类2.私有变量 #类似私有方法，在变量前加两个_,比如__fool3.一、java中this关键字主要有三个应用： (1)this调用本类中的属性，也就是类中的成员变量； (2)this调用本类中的其他方法； (3)this调用本类中的其他构造方法，调用时要放在构造方法的首行。 this, 一个官方的说法是，this首先是一个对象,它代表调用这个函数的对象。4. 代码说明** 第1行定义乐一个名为Student的类，类名首字母大写 第2行定义了一个私有的实例变量，变量名前有两个下划线 第4行代码使用self前缀说明__name变量属于Student类 第5行代码定义了一个公有方法，方法名首字母小写，其后的单词Name首字母大写。函数的命名规则和方法方法名相同 第9行代码创建了一个student对象，对象名小写 3.函数名 函数名通常使用小写，并采用下划线或单词首字母大写增加名名称的可读性，导入的函数以及模块名做前缀。 1randrange(start, stop[,step]) 代码说明 参数start表示随机所在的范围开始数字 参数stop表示随机数所在范围的结束数字，但不包括数字stop 参数step开始往后的步数。生成的随机数在[start,stop -1]的范围内，取值等于start+step 例如 1rangrange(1, 9, 2) 随机数的范围在1、3、5、7之间选取。下面这段代码演示了函数的规范写法，其中定义了一个compareNum(),该函数用于比较两个数字的大小，并返回对应的结果 123456789101112131415#函数的命名规则import randomdef compareNum(num1,num2): if(num1 &gt; num2): return 1 elif(num1 == num2): return 0 else: return -1num1 = random.randrange(1, 9)num2 = random.randrange(1, 9)print( "num1 =",num1)print( "num2 =",num2)print(compareNum(num1, num2)) 代码说明 第2行导入了random模块 第4行代码定义一个函数compareNum(),参数num1,num2待作比较的两个变量 第5行到第10行比较两个数的大小，返回不同的结果 第11行、12行代码调用random（）函数返回两个随机数 第13、14行代码输出随机数，不同的机器，不同的执行时间得到的随机数均不相同 第15行代码调用compareNum，并把产生的随机数作为参数传入 定义函数后，最后一定输出你所定义的函数 2.2.1.5 变量名的规范 ​ 变量的命名应尽可能地表达此变量的作用，尽量避免缩写，以至于任何人都能理解变量名的含义。不用担心变量名的长度，长的变量名往往更清楚的表达意思]]></content>
       <categories>
@@ -39,7 +39,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[WEB实战注入]]></title>
+    <title><![CDATA[第1章 进入Python的世界]]></title>
     <url>%2F2019%2F04%2F20%2F%E7%AC%AC1%E7%AB%A0%20%E8%BF%9B%E5%85%A5Python%E7%9A%84%E4%B8%96%E7%95%8C%2F</url>
     <content type="text"><![CDATA[第1章 进入Python的世界[TOC] Python是一种动态解释型语言的编程语言 1.1 Python的由来Python语言是由Guido van Rossum在1989年开发，在1991年正式发表. 1.2 Python的特色1.面向对象特性 2.内置的数据结构 1包括元组、列表、字典、集合等 3.简单性 4.健壮性 5.跨平台性 6.可扩展性 7.动态性 8.强语言性 9.应用广泛 1Python语言应用于数据库、网络、数学计算、WEB开发、操作系统扩展领域 1.3 第一个Python程序​ python的源代码文件以“py”作为后缀，创建一个名为hello.py的文件，输出字符串“hello word” 12if __name__ == "__main__": print("hello world") 代码说明 1.第一行代码相当于C语言中的main函数，是python程序的入口 main函数解释 1231.main函数就是第一个被调用的函数，和定义的位置、前后顺序无关2.在main函数之前定义一个全局变量，或者定义一个函数，都不影响main首先被执行。3.main()函数称之为主函数，一个C程序总是从main()函数开始执行的。 2.第二行代码使用了print语句输出字符串“hello world” 结果 1hello world Python的print语句用于输出字符串的内容，即把双引号的内容输出到控制台，Python的输入输出是通过“流”实现的，上述prin语句把字符串的内容输出到标准流，即输出到控制台，流也可以把结果输出到文件。 python的运行 ​ python 源文件+python路径 ​ python_file.py表示Python的源文件，python_file_path表示文件所在的路径 12python python_file_path + python_file.pypython C:\user\hello.py 1.4.1 Python的下载与安装官网 1www.python.org 支持系统 1234WindowsLinuxUnix其他系统... 1.5 Python的开发工具例如 Komodo、PythonWin、Eclipse、PyCharm,支持图形化操作具备编辑、调试等功能 比较好用的工具 PyCharm Eclipse 1.6 运行#！/bin/python 可以在UNIX平台下运行]]></content>
       <categories>
@@ -50,7 +50,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[WEB实战注入]]></title>
+    <title><![CDATA[零基础学Python]]></title>
     <url>%2F2019%2F04%2F20%2F%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6Python%2F</url>
     <content type="text"><![CDATA[零基础学Python[TOC] 目录第一篇 python 语言基础 ##### 第1章 进入Python的世界 ##### 第2章 Python必须知道的基础语法 ##### 第3章 Python控制语句 ##### 第4章 Python数据结构 ##### 第5章 模块与函数 ##### 第6章 字符串与正则表达式 ##### 第7章 使用Python处理文件 ##### 第8章 面向对象编程 ##### 第9章 异常处理与程序调试 ##### 第10章 数据库编程 争取在一个月左右，重新温习Python的语法并学习新的知识点，能将Python的70%掌握，每天进行学习记录。]]></content>
       <categories>

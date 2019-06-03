@@ -346,30 +346,17 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/20/第1章 进入Python的世界/">
+        <a class="abstract-title" href="/2019/06/03/一些辅助脚本/">
             
-                <span>第1章 进入Python的世界</span>
+                <span>Python辅助脚本集合</span>
         </a>
         <div class="abstract-content">
-            第1章 进入Python的世界Python是一种动态解释型语言的编程语言
-1.1 Python的由来Python语言是由Guido van Rossum在1989年开发，在1991年正式发表.
-1.2 Python的特色1.面向对象特性
-2.内置的数据结构
-1包括元组、列表、字典、集合等
-3.简单性
-4.健壮性
-5.跨平台性
-6.可扩展性
-7.动态性
-8.强语言性
-9.应用广泛
-1Python语言应用于数据库、网络、数学计算、WEB开发、操作系统扩展领域
-1.3 第一个Python程序​    python的源代码文件以“py”作为后缀，创建一个名为hello.py的文件，输出字符串“h...
+            Python辅助脚本集合1.查找windows盘符文件（自用）123456789101112131415import osdef search(path,filename):    path1 = []    for root, dirs, files in os.walk(path):        if filename in dirs or filename in files:            root = str(root)            return os.path.join(root,filename)    else:        return Falsep...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/20</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
             </div>
             <!-- tags  -->
             
@@ -388,26 +375,82 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/20/第2章 Python必须知道的基础语法/">
+        <a class="abstract-title" href="/2019/06/03/第2章 Python必须知道的基础语法--数据类型/">
+            
+                <span>第2章 Python必须知道的基础语法--数据类型</span>
+        </a>
+        <div class="abstract-content">
+            第2章 Python必须知道的基础语法–数据类型2.4 数据类型   数据类型是构成编程语言语法的基础，不同的编程语言有不同的数据类型，但都具有常用的几种数据类型。Python有几种内置的数据类型——数字、字符串、元组、列表和字典
+2.4.1 数字​    Python3的数字类型分为  整型、浮点型、布尔型、分数类型、复数类型。使用Python编写程序时，不需要声明变量的类型。由Python内置的基本数据类型来管理变量，在后台实现数值与类型的关联以及类型转换等操作
+
+
+
+操作
+说明
+bool
+int
+long
+float
+complex
+
+
+
+
+x ** y
+指数运算
+√
+√
+√
+√
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/第2章-Python必须知道成的基础语法/">
             
                 <span>第2章 Python必须知道成的基础语法</span>
         </a>
         <div class="abstract-content">
-            第2章 Python必须知道成的基础语法本章的知识点
+            第2章 Python必须知道成的基础语法
+本章的知识点
+
 Python文件的扩展名
 Python的编码规则
 数据类型
 变量和常量的定义和使用
 运算符及表达式
 
-2.1 Python的文件类型python文件类型分为三种，分别是源代码、字节代码、优化代码。这些代码可以直接运行
-2.1.1 源代码Python源代码的扩展名是以py结尾，可在控制台下运行。Python语言写的程序不需要编译成二进制代码，可可以直接运行源代码。pyw是windows下开发图形用户接口。以py和pyw为后缀名的文件可以使用文本工具打开，并修改文件的内容
-2.1.2 字节代码Python源文件编译后生成pyc后缀文件，p...
+2.1 Python的文件类型
+python文件类型分为三种，分别是源代码、字节代码、优化代码。这些代码可以直接运行
+2.1.1 源代码
+Python源代码的扩展名是以py结尾，可在控制台下运行。Python语言写的程序不需要编译成二进制代码，可可以直接运行源代码。pyw是windows下开发图形用户接口。以py和pyw为后缀名的文件可以使用文本工具打开，并修改文件的内容
+2.1.2 字节代码
+Python源文件编译后生成pyc后...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/20</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
             </div>
             <!-- tags  -->
             
@@ -464,6 +507,48 @@ Python的编码规则
  ##### 第10章  数据库编程
 
 争取在一个月左右，重新温习Python的语法并学习新的知...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/04/20/第1章 进入Python的世界/">
+            
+                <span>第1章 进入Python的世界</span>
+        </a>
+        <div class="abstract-content">
+            第1章 进入Python的世界Python是一种动态解释型语言的编程语言
+1.1 Python的由来Python语言是由Guido van Rossum在1989年开发，在1991年正式发表.
+1.2 Python的特色1.面向对象特性
+2.内置的数据结构
+1包括元组、列表、字典、集合等
+3.简单性
+4.健壮性
+5.跨平台性
+6.可扩展性
+7.动态性
+8.强语言性
+9.应用广泛
+1Python语言应用于数据库、网络、数学计算、WEB开发、操作系统扩展领域
+1.3 第一个Python程序​    python的源代码文件以“py”作为后缀，创建一个名为hello.py的文件，输出字符串“h...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -648,9 +733,395 @@ Python的编码规则
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 26
         </div>
         <!-- search  -->
         
@@ -666,27 +1137,92 @@ Python的编码规则
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/入坑/">致自己和还在努力的人</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/本地包含/">[Untitled Post]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/WEB进阶-实战2注入/">WEB实战注入</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/变量1/">[Untitled Post]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/零基础学Python/">零基础学Python</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/你必须让他停下/">[Untitled Post]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/第2章 Python必须知道的基础语法/">第2章 Python必须知道成的基础语法</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/输入密码查看flag/">[Untitled Post]</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/第1章 进入Python的世界/">第1章 进入Python的世界</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/域名解析/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/网站被黑/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/头等舱·/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/点击一百万次/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB4/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/矛盾/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/管理员系统/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB5/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_POST/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/flag值在index里/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_GET/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB3/">[Untitled Post]</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/2.计算器/">计算器--bugku</a>
         </li>
     
     
@@ -703,14 +1239,56 @@ Python的编码规则
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/25/hello-world/">欢迎来到我的博客</a>
         </li>
     
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章-Python必须知道成的基础语法/">第2章 Python必须知道成的基础语法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章 Python必须知道的基础语法--数据类型/">第2章 Python必须知道的基础语法--数据类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/一些辅助脚本/">Python辅助脚本集合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">WEB题--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/WEB进阶-实战2注入/">WEB实战注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/第1章 进入Python的世界/">第1章 进入Python的世界</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/零基础学Python/">零基础学Python</a>
+        </li>
+    
     </ul></div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
-    
-        <span class="sidebar-tag-name" data-tags="入坑"><span class="iconfont-archer">&#xe606;</span>入坑</span>
     
         <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
@@ -748,8 +1326,6 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
-    
-        <span class="sidebar-category-name" data-categories="入坑"><span class="iconfont-archer">&#xe60a;</span>入坑</span>
     
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
     

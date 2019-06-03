@@ -346,34 +346,18 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/第2章 Python必须知道的基础语法--数据类型/">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/管理员系统/">
             
-                <span>第2章 Python必须知道的基础语法--数据类型</span>
+                <span>管理员系统-bugku</span>
         </a>
         <div class="abstract-content">
-            第2章 Python必须知道的基础语法–数据类型2.4 数据类型   数据类型是构成编程语言语法的基础，不同的编程语言有不同的数据类型，但都具有常用的几种数据类型。Python有几种内置的数据类型——数字、字符串、元组、列表和字典
-2.4.1 数字​    Python3的数字类型分为  整型、浮点型、布尔型、分数类型、复数类型。使用Python编写程序时，不需要声明变量的类型。由Python内置的基本数据类型来管理变量，在后台实现数值与类型的关联以及类型转换等操作
-
-
-
-操作
-说明
-bool
-int
-long
-float
-complex
-
-
-
-
-x ** y
-指数运算
-√
-√
-√
-√
-...
+            管理员系统链接：http://123.206.31.85:1003/ 
+看一下题目是一个登录页面
+管理员系统Username:  
+Password:
+Submit     Reset 
+输入弱口令amin提示：IP禁止访问，请联系本地管理员登陆，IP已被记录.思路和方法XFF伪造1.有这么个思路，既然其他IP被禁止登录可以伪造本地管理员IP登录，可以用XFF伪造X-Forwarded-For123简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP 用处：伪造IP
+2.先看源码是否给与提示，没有的话使用Burp进行暴库123456789101112131415161718192...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -384,7 +368,7 @@ x ** y
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
     
 </div>
             
@@ -397,26 +381,81 @@ x ** y
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/第2章-Python必须知道成的基础语法/">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/输入密码查看flag/">
             
-                <span>第2章 Python必须知道成的基础语法</span>
+                <span>输入密码查看flag-bugku</span>
         </a>
         <div class="abstract-content">
-            第2章 Python必须知道成的基础语法
-本章的知识点
+            输入密码查看flag链接：http://123.206.87.240:8002/baopo/ 
+进入题目，是一个密码输入框，提示你输入五位数的密码，因为什么没有提示
+使用Burp进行暴库
+具体流程就不说了
+最后的密码是 1537得到flag值
+1flag&#123;bugku-baopo-hah&#125;
 
-Python文件的扩展名
-Python的编码规则
-数据类型
-变量和常量的定义和使用
-运算符及表达式
-
-2.1 Python的文件类型
-python文件类型分为三种，分别是源代码、字节代码、优化代码。这些代码可以直接运行
-2.1.1 源代码
-Python源代码的扩展名是以py结尾，可在控制台下运行。Python语言写的程序不需要编译成二进制代码，可可以直接运行源代码。pyw是windows下开发图形用户接口。以py和pyw为后缀名的文件可以使用文本工具打开，并修改文件的内容
-2.1.2 字节代码
-Python源文件编译后生成pyc后...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/WEB5/">
+            
+                <span>WEB5-bugku</span>
+        </a>
+        <div class="abstract-content">
+            WEB5链接：http://123.206.87.240:8002/web5/ 
+打开题目JSPFUCK??????答案格式CTF{**} **
+​                                  Submit
+提示了你，按下Submit键返回flag值
+这种题目先查看源代码因为没有别的提示F12或者右击查看元素，代码如下
+12345&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;div style="display:none;"&gt;([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/一些辅助脚本/">
+            
+                <span>Python辅助脚本集合</span>
+        </a>
+        <div class="abstract-content">
+            Python辅助脚本集合1.查找windows盘符文件（自用）123456789101112131415import osdef search(path,filename):    path1 = []    for root, dirs, files in os.walk(path):        if filename in dirs or filename in files:            root = str(root)            return os.path.join(root,filename)    else:        return Falsep...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -978,22 +1017,9 @@ Python源文件编译后生成pyc后...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 26
+        Total : 27
         </div>
         <!-- search  -->
         
@@ -1009,42 +1035,22 @@ Python源文件编译后生成pyc后...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/本地包含/">[Untitled Post]</a>
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href="/2019/06/23/第1章 进入Python的世界/">第1章 进入Python的世界</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/变量1/">[Untitled Post]</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/零基础学Python/">零基础学Python</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/你必须让他停下/">[Untitled Post]</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章 Python必须知道的基础语法--数据类型/">第2章 Python必须知道的基础语法--数据类型</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/输入密码查看flag/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/域名解析/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/网站被黑/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/头等舱·/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/点击一百万次/">[Untitled Post]</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章-Python必须知道成的基础语法/">第2章 Python必须知道成的基础语法</a>
         </li>
     
     
@@ -1054,47 +1060,107 @@ Python源文件编译后生成pyc后...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/矛盾/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/管理员系统/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB5/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_POST/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/flag值在index里/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_GET/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB3/">[Untitled Post]</a>
         </li>
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/一些辅助脚本/">Python辅助脚本集合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/头等舱·/">头等舱</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">WEB题--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/本地包含/">本地包含-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/变量1/">变量1-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/点击一百万次/">点击一百万次-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_GET/">WEB基础$_GET-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/矛盾/">矛盾-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_POST/">web基础$_POST-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/你必须让他停下/">你必须让他停下-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/2.计算器/">计算器--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/输入密码查看flag/">输入密码查看flag-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/管理员系统/">管理员系统-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/网站被黑/">网站被黑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/域名解析/">域名解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">SQL注入1(已挂)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/flag值在index里/">flag值在index中--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB5/">WEB5-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/入坑/">致自己和还在努力的人</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/WEB进阶-实战2注入/">WEB实战注入</a>
         </li>
     
     
@@ -1111,50 +1177,6 @@ Python源文件编译后生成pyc后...
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/25/hello-world/">欢迎来到我的博客</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章-Python必须知道成的基础语法/">第2章 Python必须知道成的基础语法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章 Python必须知道的基础语法--数据类型/">第2章 Python必须知道的基础语法--数据类型</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/一些辅助脚本/">Python辅助脚本集合</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">WEB题--bugku</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/WEB进阶-实战2注入/">WEB实战注入</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/第1章 进入Python的世界/">第1章 进入Python的世界</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/零基础学Python/">零基础学Python</a>
-        </li>
-    
     </ul></div>
   </div>
         <div class="sidebar-panel-tags">
@@ -1163,6 +1185,8 @@ Python源文件编译后生成pyc后...
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
         <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="入坑"><span class="iconfont-archer">&#xe606;</span>入坑</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1200,6 +1224,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
     
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="入坑"><span class="iconfont-archer">&#xe60a;</span>入坑</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

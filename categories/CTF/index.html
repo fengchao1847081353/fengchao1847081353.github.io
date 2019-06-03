@@ -346,17 +346,51 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/域名解析/">
             
-                <span>WEB题--bugku</span>
+                <span>域名解析</span>
         </a>
         <div class="abstract-content">
-            WEB题–bugku1.WEB2第一题为签到题，主要进入有一组滑稽笑脸
-题目连接http://123.206.87.240:8002/web2/ 
-121.使用F12查看源代码即可找到flag值flag KEY&#123;Web-2-bugKssNNikls9100&#125;
-12.查看JS文件
-13.找GET请求响应
-1234567&lt;/head&gt;&lt;body id="body" onLoad="init()"&gt;&lt;!flag KEY&#123;Web-2-bugKssNNikls9100&#125;&gt;&lt;script type="text/java...
+            域名解析题目听说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag 
+域名可以直接访问，hosts文件
+host文件
+12这个文件是根据TCP/IP for Windows 的标准来工作的。它的作用是定义IP地址类似于HTML网站的index.php首页功能
+有两种方法1.windos下改host文件
+123我们修改本机的hosts文件。（修改时先以管理者运行记事本，再由记事本打开hosts文件，添加映射） hosts路径：`C:\Windows\System32\drivers\etc\hosts` 添加映射：`120.24.86.145 flag....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/WEB5/">
+            
+                <span>WEB5-bugku</span>
+        </a>
+        <div class="abstract-content">
+            WEB5链接：http://123.206.87.240:8002/web5/ 
+打开题目JSPFUCK??????答案格式CTF{**} **
+​                                  Submit
+提示了你，按下Submit键返回flag值
+这种题目先查看源代码因为没有别的提示F12或者右击查看元素，代码如下
+12345&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;div style="display:none;"&gt;([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -412,26 +446,225 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/04/20/WEB进阶-实战2注入/">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">
             
-                <span>WEB实战注入</span>
+                <span>SQL注入1(已挂)</span>
         </a>
         <div class="abstract-content">
-            WEB进阶-实战2注入链接：http://www.kabelindo.co.id 
-要求是表的最后一个是flag值
-就是一个网站
-
-对这个网站进行注入方法：1.SQLMAP直接跑得到flag值
-2.手工注入这个可以说很坑了，使用常规SQL注入爆出来表看不到最后一个。。。
-上百度查询使用数字型注和盲注，直接转载大牛文章
-盲注
-id=24 and (select count(table_name) from information_schema.tables where table_schema=’u9897uwx_kabel’)=22%23  
-发现有二十二个表  所以   需要 爆出第二...
+            SQL注入1(已挂)题目：访问参数为：?id=x
+查找表为key的数据表，id=1值hash字段值
+代码
+1234567891011121314//过滤sql$array = array(&apos;table&apos;,&apos;union&apos;,&apos;and&apos;,&apos;or&apos;,&apos;load_file&apos;,&apos;create&apos;,&apos;delete&apos;,&apos;select&apos;,&apos;update&apos;,&apos;sleep&apos;,&apos;alter&apos;,&a...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/20</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/WEB基础$_GET/">
+            
+                <span>WEB基础$_GET-bugku</span>
+        </a>
+        <div class="abstract-content">
+            3.WEB基础$_GET查看题目http://123.206.87.240:8002/get/
+1.get请求  只获取数据  放在url之中，通过?key=value&amp;key=value2.post请求  要对服务器产生影响  放在form Data中，通过key:value&amp;key=value 
+此处利用GET传值，意思是将what赋值给flag,才能输出flag值
+1234$what=$_GET['what'];echo $what;if($what=='flag')echo 'flag&#123;****&#125;';
+1234567http://123.206...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/flag值在index里/">
+            
+                <span>flag值在index中--bugku</span>
+        </a>
+        <div class="abstract-content">
+            flag值在index中链接：http://123.206.87.240:8005/post/ 
+先看题目，是一个超链接click me? no 
+打开显示
+test5
+看源码也没什么有价值的。。但是题目提示，flag值在index中，，直接想到base64读取index.php文件
+这也是个小技巧，没有任何提示下使用base64读取
+构造Payload1http://123.206.87.240:8005/post/index.php?file=php://filter/read=convert-base64-encode/resource=index.php
+返回了base64位码1...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/WEB基础$_POST/">
+            
+                <span>web基础$_POST-bugku</span>
+        </a>
+        <div class="abstract-content">
+            4.web基础$_POST1.试题链接http://123.206.87.240:8002/post/ 
+1.get请求  只获取数据  放在url之中，通过?key=value&amp;key=value  
+2.post请求  要对服务器产生影响  放在form Data中，通过key:value&amp;key=value查看源码
+利用了POST传值方式，利用POST进行传输数据，POST中what=flag即可出现flag
+1234$what=$_POST['what'];echo $what;if($what=='flag')echo 'flag&#123;****&#125;...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/变量1/">
+            
+                <span>变量1-bugku</span>
+        </a>
+        <div class="abstract-content">
+            变量1题目链接：http://123.206.87.240:8004/index1.php 
+代码：
+12345678910111213flag In the variable ! &lt;?php  error_reporting(0);include "flag1.php";   				#说明文件在本地highlight_file(__file__);if(isset($_GET['args']))&#123;			#get方式传值，变量条件    $args = $_GET['args'];			#赋值args    if(!preg_match("/^\w+$/",$args)...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/你必须让他停下/">
+            
+                <span>你必须让他停下-bugku</span>
+        </a>
+        <div class="abstract-content">
+            你必须让他停下题目连接：http://123.206.87.240:8002/web12/ 
+进入题目页面不停刷新，会出现一张图片
+两种方法：
+1.Burp抓包
+2.不停进行页面源码查看（不推荐）
+先说第一种方法
+1.先设置好代理，进行抓包
+2.可以一直Forward（丢包），直到flag出现
+3.给Repeater（中继器）一直进行（Go）尝试，直到得到flag值&amp;
+123456789101112131415161718192021222324252627HTTP/1.1 200 OKServer: nginxDate: Wed, 02 Jan 2019 02:25:08 GM...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">
+            
+                <span>WEB题--bugku</span>
+        </a>
+        <div class="abstract-content">
+            WEB题–bugku1.WEB2第一题为签到题，主要进入有一组滑稽笑脸
+题目连接http://123.206.87.240:8002/web2/ 
+121.使用F12查看源代码即可找到flag值flag KEY&#123;Web-2-bugKssNNikls9100&#125;
+12.查看JS文件
+13.找GET请求响应
+1234567&lt;/head&gt;&lt;body id="body" onLoad="init()"&gt;&lt;!flag KEY&#123;Web-2-bugKssNNikls9100&#125;&gt;&lt;script type="text/java...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
             </div>
             <!-- tags  -->
             
@@ -445,6 +678,10 @@ id=24 and (select count(table_name) from information_schema.tables where table_s
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/categories/CTF/page/2/">2</a><a class="extend next" rel="next" href="/categories/CTF/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -984,22 +1221,9 @@ id=24 and (select count(table_name) from information_schema.tables where table_s
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 26
+        Total : 27
         </div>
         <!-- search  -->
         
@@ -1015,42 +1239,22 @@ id=24 and (select count(table_name) from information_schema.tables where table_s
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/本地包含/">[Untitled Post]</a>
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href="/2019/06/23/第1章 进入Python的世界/">第1章 进入Python的世界</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/变量1/">[Untitled Post]</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/零基础学Python/">零基础学Python</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/你必须让他停下/">[Untitled Post]</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章 Python必须知道的基础语法--数据类型/">第2章 Python必须知道的基础语法--数据类型</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/输入密码查看flag/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/域名解析/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/网站被黑/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/头等舱·/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/点击一百万次/">[Untitled Post]</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章-Python必须知道成的基础语法/">第2章 Python必须知道成的基础语法</a>
         </li>
     
     
@@ -1060,47 +1264,107 @@ id=24 and (select count(table_name) from information_schema.tables where table_s
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/矛盾/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/管理员系统/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB5/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_POST/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/flag值在index里/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_GET/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB3/">[Untitled Post]</a>
         </li>
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/一些辅助脚本/">Python辅助脚本集合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/头等舱·/">头等舱</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">WEB题--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/本地包含/">本地包含-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/变量1/">变量1-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/点击一百万次/">点击一百万次-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_GET/">WEB基础$_GET-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/矛盾/">矛盾-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_POST/">web基础$_POST-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/你必须让他停下/">你必须让他停下-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/2.计算器/">计算器--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/输入密码查看flag/">输入密码查看flag-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/管理员系统/">管理员系统-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/网站被黑/">网站被黑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/域名解析/">域名解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">SQL注入1(已挂)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/flag值在index里/">flag值在index中--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB5/">WEB5-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/入坑/">致自己和还在努力的人</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/WEB进阶-实战2注入/">WEB实战注入</a>
         </li>
     
     
@@ -1117,50 +1381,6 @@ id=24 and (select count(table_name) from information_schema.tables where table_s
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href="/2019/04/25/hello-world/">欢迎来到我的博客</a>
         </li>
     
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章-Python必须知道成的基础语法/">第2章 Python必须知道成的基础语法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/第2章 Python必须知道的基础语法--数据类型/">第2章 Python必须知道的基础语法--数据类型</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/一些辅助脚本/">Python辅助脚本集合</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">WEB题--bugku</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/WEB进阶-实战2注入/">WEB实战注入</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/第1章 进入Python的世界/">第1章 进入Python的世界</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/零基础学Python/">零基础学Python</a>
-        </li>
-    
     </ul></div>
   </div>
         <div class="sidebar-panel-tags">
@@ -1169,6 +1389,8 @@ id=24 and (select count(table_name) from information_schema.tables where table_s
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
         <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="入坑"><span class="iconfont-archer">&#xe606;</span>入坑</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1206,6 +1428,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
     
         <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="入坑"><span class="iconfont-archer">&#xe60a;</span>入坑</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

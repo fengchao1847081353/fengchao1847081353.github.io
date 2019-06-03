@@ -346,20 +346,51 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/头等舱·/">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/域名解析/">
             
-                <span>头等舱</span>
+                <span>域名解析</span>
         </a>
         <div class="abstract-content">
-            头等舱链接：http://123.206.87.240:9009/hd.php 
-进入题目
-只有一个什么都没有
-查看源码，也是一样
-既然是WEB题，直接用Burp工具
-1.设置好代理
-2.进行抓包，交接给中继器（Repeater）
-3.点击GO获得flag值
-1234567891011121314HTTP/1.1 200 OKServer: nginxDate: Wed, 02 Jan 2019 08:27:10 GMTContent-Type: text/htmlConnection: closeflag&#123;Bugku_k8_23s_istra&#125;: Content-L...
+            域名解析题目听说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag 
+域名可以直接访问，hosts文件
+host文件
+12这个文件是根据TCP/IP for Windows 的标准来工作的。它的作用是定义IP地址类似于HTML网站的index.php首页功能
+有两种方法1.windos下改host文件
+123我们修改本机的hosts文件。（修改时先以管理者运行记事本，再由记事本打开hosts文件，添加映射） hosts路径：`C:\Windows\System32\drivers\etc\hosts` 添加映射：`120.24.86.145 flag....
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">
+            
+                <span>WEB题--bugku</span>
+        </a>
+        <div class="abstract-content">
+            WEB题–bugku1.WEB2第一题为签到题，主要进入有一组滑稽笑脸
+题目连接http://123.206.87.240:8002/web2/ 
+121.使用F12查看源代码即可找到flag值flag KEY&#123;Web-2-bugKssNNikls9100&#125;
+12.查看JS文件
+13.找GET请求响应
+1234567&lt;/head&gt;&lt;body id="body" onLoad="init()"&gt;&lt;!flag KEY&#123;Web-2-bugKssNNikls9100&#125;&gt;&lt;script type="text/java...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -415,17 +446,46 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/WEB5/">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/WEB3/">
             
-                <span>WEB5-bugku</span>
+                <span>WEB3-bugku</span>
         </a>
         <div class="abstract-content">
-            WEB5链接：http://123.206.87.240:8002/web5/ 
-打开题目JSPFUCK??????答案格式CTF{**} **
-​                                  Submit
-提示了你，按下Submit键返回flag值
-这种题目先查看源代码因为没有别的提示F12或者右击查看元素，代码如下
-12345&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;div style="display:none;"&gt;([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]...
+            6.WEB3链接：http://123.206.87.240:8002/web3/ 
+是一个简单的XSS循环,构造了大量的alert函数
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/WEB4/">
+            
+                <span>WEB4-bugku</span>
+        </a>
+        <div class="abstract-content">
+            WEB4链接：http://123.206.87.240:8002/web4/ 
+题目已经提示你查看源代码
+在线unescape解密工具：https://escape.supfree.net/
+查看源代码123456789101112131415161718&lt;html&gt;&lt;title&gt;BKCTF-WEB4&lt;/title&gt;&lt;body&gt;&lt;div style="display:none;"&gt;&lt;/div&gt;&lt;form action="index.php" method="post" &gt;看看源代码？&lt;br&gt;...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -551,17 +611,14 @@ test5
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">
+        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/变量1/">
             
-                <span>WEB题--bugku</span>
+                <span>变量1-bugku</span>
         </a>
         <div class="abstract-content">
-            WEB题–bugku1.WEB2第一题为签到题，主要进入有一组滑稽笑脸
-题目连接http://123.206.87.240:8002/web2/ 
-121.使用F12查看源代码即可找到flag值flag KEY&#123;Web-2-bugKssNNikls9100&#125;
-12.查看JS文件
-13.找GET请求响应
-1234567&lt;/head&gt;&lt;body id="body" onLoad="init()"&gt;&lt;!flag KEY&#123;Web-2-bugKssNNikls9100&#125;&gt;&lt;script type="text/java...
+            变量1题目链接：http://123.206.87.240:8004/index1.php 
+代码：
+12345678910111213flag In the variable ! &lt;?php  error_reporting(0);include "flag1.php";   				#说明文件在本地highlight_file(__file__);if(isset($_GET['args']))&#123;			#get方式传值，变量条件    $args = $_GET['args'];			#赋值args    if(!preg_match("/^\w+$/",$args)...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -600,71 +657,6 @@ test5
 2.可以一直Forward（丢包），直到flag出现
 3.给Repeater（中继器）一直进行（Go）尝试，直到得到flag值&amp;
 123456789101112131415161718192021222324252627HTTP/1.1 200 OKServer: nginxDate: Wed, 02 Jan 2019 02:25:08 GM...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/域名解析/">
-            
-                <span>域名解析</span>
-        </a>
-        <div class="abstract-content">
-            域名解析题目听说把 flag.baidu.com 解析到123.206.87.240 就能拿到flag 
-域名可以直接访问，hosts文件
-host文件
-12这个文件是根据TCP/IP for Windows 的标准来工作的。它的作用是定义IP地址类似于HTML网站的index.php首页功能
-有两种方法1.windos下改host文件
-123我们修改本机的hosts文件。（修改时先以管理者运行记事本，再由记事本打开hosts文件，添加映射） hosts路径：`C:\Windows\System32\drivers\etc\hosts` 添加映射：`120.24.86.145 flag....
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="CTF">CTF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/WEB题-bugku/变量1/">
-            
-                <span>变量1-bugku</span>
-        </a>
-        <div class="abstract-content">
-            变量1题目链接：http://123.206.87.240:8004/index1.php 
-代码：
-12345678910111213flag In the variable ! &lt;?php  error_reporting(0);include "flag1.php";   				#说明文件在本地highlight_file(__file__);if(isset($_GET['args']))&#123;			#get方式传值，变量条件    $args = $_GET['args'];			#赋值args    if(!preg_match("/^\w+$/",$args)...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1226,6 +1218,32 @@ host文件
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 27
@@ -1264,17 +1282,17 @@ host文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB4/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB3/">[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/一些辅助脚本/">Python辅助脚本集合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/域名解析/">域名解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/变量1/">变量1-bugku</a>
         </li>
     
     
@@ -1284,7 +1302,7 @@ host文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">WEB题--bugku</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/2.计算器/">计算器--bugku</a>
         </li>
     
     
@@ -1294,7 +1312,7 @@ host文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/变量1/">变量1-bugku</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB3/">WEB3-bugku</a>
         </li>
     
     
@@ -1324,7 +1342,7 @@ host文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/2.计算器/">计算器--bugku</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB5/">WEB5-bugku</a>
         </li>
     
     
@@ -1344,12 +1362,12 @@ host文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/域名解析/">域名解析</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">SQL注入1(已挂)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">SQL注入1(已挂)</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">WEB题--bugku</a>
         </li>
     
     
@@ -1359,7 +1377,7 @@ host文件
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB5/">WEB5-bugku</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB4/">WEB4-bugku</a>
         </li>
     
     

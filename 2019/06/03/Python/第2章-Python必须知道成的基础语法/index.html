@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Fengsir">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Fengsir">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>第2章 Python必须知道成的基础语法 · Fxsir的工作室</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Fxsir的工作室.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">第2章 Python必须知道成的基础语法</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Fxsir的工作室.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:95vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random/1920x1080)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            第2章 Python必须知道成的基础语法
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">5.5k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/03</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>第2章 Python必须知道成的基础语法</p>
+<p>本章的知识点</p>
+<ul>
+<li>Python文件的扩展名</li>
+<li>Python的编码规则</li>
+<li>数据类型</li>
+<li>变量和常量的定义和使用</li>
+<li>运算符及表达式</li>
+</ul>
+<p>2.1 Python的文件类型</p>
+<p>python文件类型分为三种，分别是源代码、字节代码、优化代码。这些代码可以直接运行</p>
+<p>2.1.1 源代码</p>
+<p>Python源代码的扩展名是以py结尾，可在控制台下运行。Python语言写的程序不需要编译成二进制代码，可可以直接运行源代码。pyw是windows下开发图形用户接口。以py和pyw为后缀名的文件可以使用文本工具打开，并修改文件的内容</p>
+<p>2.1.2 字节代码</p>
+<p>Python源文件编译后生成pyc后缀文件，pyc是编译过的字节文件，这种文件不可以使用文本编辑工具打开或者修改。pyc文件与平台无关，因此Python的程序可以运行在Windows、UNIX、Linux等操作系统上。py文件直接运行即可获得pyc类型的文件，或通过脚本生成该类型的文件。</p>
+<p>  下面这段脚本可以把hello.py编译为hello.pyc</p>
+<pre><code>import py_compile
+py_compile.compile(&apos;hello.py&apos;)
+</code></pre><p>  保存此脚本，运行即可得到hello.pyc文件</p>
+<p>2.1.3 优化代码</p>
+<p>扩展名为pyo的文件是优化过的源文件，pyo类型的文件需要用命令工具生成。pyo文件也不能用文本工具编辑打开或者修改。下面把hello.py文件编译成hello.pyo</p>
+<p>（1）启动命令窗口，进入hello.py文件所在的目录，例如：</p>
+<pre><code>cd /D D:\developer\python\example\02\2.1
+</code></pre><p>(2)在命令行输入 python-O-m py_compile hello.py,并按回车键。</p>
+<pre><code>python -O -m py_compile hello.py
+</code></pre><p>代码说明</p>
+<ul>
+<li>参数“-O”表示生成优化代码</li>
+<li>参数“-m”表示把导入的py_compile模块作为脚本运行。编译hello.pyo需要调用py_compile模块的compile()方法</li>
+<li>参数“hello.py是待编译的文件名”</li>
+<li>最后查看hello.py所在的文件目录，此时目录生成一个名为hello.pyo的文件</li>
+</ul>
+<p>2.2 python的编码规范</p>
+<p>Python语言有一套自己独特的编码规则，包括命名规则、代码书写规则等</p>
+<p>2.2.1 命名规则</p>
+<p>1.变量名、包名、模块名</p>
+<p> 变量名、包名、模块名通常使用小写，可使用下划线</p>
+<pre><code>01 #变量名、模块名的命名规则
+02 #Filename: ruleModule.py #可理解为import ruleModule.py或者 import ruleModule
+03
+04 _rule_ = &quot;rule infomation&quot;
+</code></pre><p>代码说明</p>
+<ul>
+<li>第2行声明模块的名称，模块采用小写。也可以不指定模块名，以py后缀的文件就是一个模块。模块名就是文件名</li>
+<li>第4行定义了一个全局变量_rule</li>
+</ul>
+<ol start="2">
+<li><p>类名、对象名</p>
+<p>1.类名首字母采用大写，对象采用小写</p>
+<p>2.类的 ”属性“ 和 “方法名” 以 ”对象“ 作为前缀。类的私有变量</p>
+<p>3.私有方法有一下两个下划线作为前缀。下面这段代码演示了累的定义和实例化的规范写法</p>
+<p>4.方法名首字母小写，其后的单词首字母大写</p>
+<p> class Student:                  #类名大写</p>
+<pre><code>__name = &quot;&quot;                    #私有变量前必须有两个下划线
+def __init__(self, name):
+    self.__name = name        #self相当于java的this
+def getName(self):            #方法名首字母小写，其后每个单词的首字母大写
+    return self.__name
+</code></pre><p> if <strong>name</strong> == “<strong>main</strong>“:</p>
+<pre><code>student = Student(&quot;borphi&quot;)
+print(student.getName())
+</code></pre></li>
+</ol>
+<p>涉及的函数</p>
+<pre><code>1.class函数           #创建类
+2.私有变量               #类似私有方法，在变量前加两个_,比如__fool
+3.一、java中this关键字主要有三个应用：
+     (1)this调用本类中的属性，也就是类中的成员变量；
+     (2)this调用本类中的其他方法；
+     (3)this调用本类中的其他构造方法，调用时要放在构造方法的首行。
+    this, 一个官方的说法是，this首先是一个对象,它代表调用这个函数的对象。
+4.
+</code></pre><p>代码说明</p>
+<ul>
+<li>第1行定义了一个名为Student的类，类名首字母大写</li>
+<li>第2行定义了一个私有的实例变量，变量名前有两个下划线</li>
+<li>第4行代码使用self前缀说明__name变量属于Student类</li>
+<li>第5行代码定义了一个公有方法，方法名首字母小写，其后的单词Name首字母大写。函数的命名规则和方法方法名相同</li>
+<li>第9行代码创建了一个student对象，对象名小写</li>
+</ul>
+<p>3.函数名</p>
+<p>   函数名通常使用小写，并采用下划线或单词首字母大写增加名名称的可读性，导入的函数以及模块名做前缀。</p>
+<pre><code>randrange(start, stop[,step])
+</code></pre><p>代码说明</p>
+<ul>
+<li>参数start表示随机所在的范围开始数字</li>
+<li>参数stop表示随机数所在范围的结束数字，但不包括数字stop</li>
+<li>参数step开始往后的步数。生成的随机数在[start,stop -1]的范围内，取值等于start+step</li>
+</ul>
+<p>例如</p>
+<pre><code>rangrange(1, 9, 2)
+</code></pre><p>随机数的范围在1、3、5、7之间选取。下面这段代码演示了函数的规范写法，其中定义了一个compareNum(),该函数用于比较两个数字的大小，并返回对应的结果</p>
+<pre><code>#函数的命名规则
+import random
+
+def compareNum(num1,num2):
+    if(num1 &gt; num2):
+        return 1
+    elif(num1 == num2):
+        return 0
+    else:
+        return -1
+num1 = random.randrange(1, 9)
+num2 = random.randrange(1, 9)
+print( &quot;num1 =&quot;,num1)
+print( &quot;num2 =&quot;,num2)
+print(compareNum(num1, num2))
+</code></pre><p>代码说明</p>
+<ul>
+<li>第2行导入了random模块</li>
+<li>第4行代码定义一个函数compareNum(),参数num1,num2待作比较的两个变量</li>
+<li>第5行到第10行比较两个数的大小，返回不同的结果</li>
+<li>第11行、12行代码调用random（）函数返回两个随机数</li>
+<li>第13、14行代码输出随机数，不同的机器，不同的执行时间得到的随机数均不相同</li>
+<li>第15行代码调用compareNum，并把产生的随机数作为参数传入</li>
+<li>定义函数后，最后一定输出你所定义的函数</li>
+</ul>
+<p>2.2.1.5  变量名的规范</p>
+<pre><code>变量的命名应尽可能地表达此变量的作用，尽量避免缩写，以至于任何人都能理解变量名的含义。不用担心变量名的长度，长的变量名往往更清楚的表达意思
+</code></pre><p>2.2.2 代码缩进与冒号</p>
+<p>   进与冒号是指通过在每行代码前输入空格或制表符的方式，表示每行代码之间的层次关系任何编程语言都需要要用代码缩进清晰程序的结构</p>
+<p>案例</p>
+<pre><code>x = 1
+if x == 1:
+    print( &quot;x=&quot;,x)
+else:
+    print( &quot;x=&quot;,x)
+    x = x+1
+print(&quot;x=&quot;,x)
+</code></pre><p>代码说明</p>
+<ul>
+<li>第1行代码创建了变量x,并赋值为1。在赋值运算符的两侧各添加一个空格，这是一种良好的书写习惯，挺高程序的程序的可读性</li>
+<li>第2行代码使用了条件if，判断x的值是否1.if表达式后输入一个冒号，冒号后面的代码块与第1行代码处于同一个层次，直接从最左端书写代码</li>
+<li><p>第3行代码表示x的值等于1时输出的结果，当if条件成立时，程序才能执行到第3行，所以第3行代码位于第2行代码的下一个层次。在编码时，首先左端输入4个空格或表键（不建议），然后书写print语句。输出结果</p>
+<p>  x = 1</p>
+</li>
+<li><p>第四行代码的else关键字后是一段新的代码块。当x的值不等于1时，程序执行5、6行代码</p>
+</li>
+<li>第5、6行代码采用缩进式的代码风格</li>
+<li><p>第7行输出结果</p>
+<p>  x = 1</p>
+</li>
+</ul>
+<p>2.2.3  模块导入的规范</p>
+<p>   模块是类或函数的集合，用于处理一类问题。模块的导入和java包的导入的概念很相似。都使用import语句，在Python中，如果需要在程序中调用标准库或其他第三方库的类，需要先使用import或from…import..语句导入相关的模块。</p>
+<ol>
+<li>import语句</li>
+</ol>
+<p>下面这段代码使用import语句导入sys模块，并打印相关内容</p>
+<pre><code>#规范导入方式
+import sys
+
+print(sys.path)
+print(sys.arvg)
+</code></pre><ul>
+<li>第2行代码使用了import语导入了sys模块，sys模块是处理系统环境的函数集合</li>
+<li>第4行代码输出Python环境下查找路径的集合，Python默认情况下会查找sys.path返回的目录列表。列表是Python的内置的数据结构，定义了一组相同意义的数据，通常用来作为参数或者返回值</li>
+<li>第5行代码中的sys.argv是存储输入参数的列表。默认情况下，argv自带的参数是文件名</li>
+</ul>
+<p>2.from…import…语句</p>
+<pre><code>使用from..import..语句导入有所不同，区别是前者只导入模块中的一部分内容，并在命名空间中创建导入对象的引用；而后者在当前程序的命名空间中创建导入模块的引用，从而可以使用&quot;sys.path的方式调用sys模块中的内容&quot;
+</code></pre><p>下面这段代码实现了与上面代码相同的功能，不同的是使用了from…import…语句导入指定内容</p>
+<pre><code>from sys import path
+from sys import arvg
+
+print (path)
+print (arvg)
+</code></pre><p>代码说明</p>
+<p>第5、6行代码直接调用path、argv列表的内容，没有模块名的限定，但这种代码写法不够规范，如果程序比较复杂，导入了很多模块，阅读程序的人并了解path、arvg来自哪个模块。而通过sys.path、sys.arvg的写法可以清楚的知道path、arvg来自sys模块</p>
+<p>2.2.4 使用空行分隔代码</p>
+<p>  函数之间或者类的方法之间使用空行分隔，表示新的代码的开始。类和函数入口之间也用空行分隔，突出函数入口的开始。</p>
+<p>例子</p>
+<pre><code>class A:                        #创建一个类
+    def funX(self):                #def定义一个方法funX,self是类
+        print( &quot;funY()&quot; )
+
+    def funY(self):                #def定义一个方法funY，self是类
+        print( &quot;funY()&quot; )
+
+if __name__ == &apos;__main__&apos;:        #调用类A，调用funX，funY方法
+    a = A()
+    a.funX()
+    a.funY()
+</code></pre><p>代码说明</p>
+<ul>
+<li>第4行代码插入了一个空行，表示区分方法之间的间隔，便于阅读</li>
+<li>第7行代码也是一个空行，因为下面的if语句是主程序的入口，用于创建类A的对象，并调用其方法</li>
+</ul>
+<p>2.2.5  正确的注释</p>
+<p>（1）中文注释：如果需要代码中使用中文注释，必须在Python文件的最前面加上如下注释说明。</p>
+<pre><code># -*- coding: UTF-8 -*-
+</code></pre><p>（2）跨平台注释：如果需要使Python程序运行在*unix中，最好在Python文件的最前面加下如下注释说明</p>
+<pre><code>#！/usr/bin/python
+</code></pre><p>此外注释也用于调试程序，因此可以使用注释辅助调试</p>
+<p>  注释的用法     描述                      注释的用法      描述<br>  单行注释      说明一行语句的作用               中文注释的支持    -<em>- coding: UTF-8 - </em>-<br>  块注释       说明一段代码的作用或整个程序的文件的功能    调试程序       注释可帮助程序员调试程序<br>  程序的跨平台    #/usr/bin/python                                         </p>
+<p>2.2.6 语句的分隔</p>
+<pre><code>在Python中的分号可以省略，主要通过换行来识别语句的结束
+
+#下面两条语句是等价的
+print( &quot;hello world!&quot; )
+print( &quot;hello world!&quot; );
+</code></pre><p>如果要在一行中书写多个语句，就必须使用分号分隔</p>
+<pre><code>#使用分号分隔语句
+x = 1;y = 1 ;z = 1
+print(z,y,z)
+</code></pre><p>代码说明</p>
+<ul>
+<li>第2行代码中有3条赋值语句，语句之间需要分号隔开，如果不隔开Python解释器不能正确解释，会提示语法错误<pre><code>SyntaxError: invalid syntax
+</code></pre></li>
+</ul>
+<p>（2）Python的“\”换行符</p>
+<p>Python支持多行写一条语句，Python使用“\”作为换行符，一条语句写在多行</p>
+<p>例如SQL语句作为参数传递给函数</p>
+<pre><code>#字符串的换行
+#写法一
+sql = &quot;select id,name \
+from dept \
+where name = &apos;A&apos;&quot;
+print(sql)
+#写法二
+sql = &quot;select id,name &quot; \
+      &quot;from dept&quot; \
+      &quot;where name = &apos;A&apos;&quot;
+print（sql）
+</code></pre><p>代码说明</p>
+<ul>
+<li><p>写法一只使用了一对双引号，把SQL语句分为select、from、where 3部分分别书写。</p>
+<p>  select id,name, from dept where name = ‘A’</p>
+</li>
+<li><p>写法二比第一种可读性强，可以使用空格和制表符对齐语句，使代码显得更工整，简短代码不推荐换行写法</p>
+<p>  select id,name, from dept where name = ‘A’</p>
+</li>
+</ul>
+<p>2.3 变量和常量</p>
+<p>变量是计算机内存中的一块区域，变量可以储存任何值，而且值可以改变</p>
+<p>常量是一块只读的内存区域，常量一旦初始化就不能修改</p>
+<p>2.3.1 变量的命名</p>
+<pre><code>变量是由 &quot;字母”、“数字”、“下换线&quot; 成，变量的 ”第一个字符“ 必须是字母或下划线，其他字符可以由字母、数字或下划线组成。
+</code></pre><p>例如</p>
+<pre><code># 正确的变量命名
+var_1 = 1
+print （var_1）
+_var = 2
+print(_var)
+</code></pre><p>代码说明</p>
+<ul>
+<li>第2行代码定义了一个名为var_1的变量，改变量的初始值为1。这个变量以字母开头后面的字符由字母、下划线和数字组成</li>
+<li>第4行代码定义了一个名为_var1的变量，该变量的初始值为2，这个变量以下划线开头，后面的字符由字母和数字组成</li>
+</ul>
+<p>错误的变量名方式</p>
+<pre><code>#错误的变量命名
+1_var = 3
+print (1_var)
+$var = 4
+print ($var)
+</code></pre><p>代码说明</p>
+<ul>
+<li>第2行代码定义了一个名为1_var的变量，该变量以数字开头，后面的字符由数字下划线组成</li>
+<li>第3行代码，变量以数字开头、不符合变量命名规则</li>
+<li>第4行代码定义了一个名为$var的变量 ,变量以符号开头</li>
+<li>第5行代码，变量以$开头，不符合变量名的命名规则</li>
+</ul>
+<p>2.3.2 变量的赋值</p>
+<p>   Python中的变量不需要声明，变量的赋值操作即是变量声明和定义过程。每个变量在内存中创建，都包括变量的标识、名称和数据这些信息</p>
+<p><img src="/2019/06/03/Python/第2章-Python必须知道成的基础语法/第2章-Python必须知道成的基础语法\变量的内部结构.png" alt></p>
+<p>变量的内部结构</p>
+<p>变量x的标识  –&gt; id(x) —-&gt;x |1   </p>
+<p>  上面的代码创建了变量x，并赋值为1，如上所示。</p>
+<p>  Python中一次新的赋值，并创建一个新的变量。即使变量的名称相同，变量的标识并不相同</p>
+<pre><code>#一次新的赋值操作，并创建一个新的变量
+x = 1
+print (id(x))
+x = 2
+print( id(x) )
+</code></pre><p>代码说明</p>
+<ul>
+<li>第2行代码定义了一个名为x的变量，该变量的初始值为1</li>
+<li><p>第3行代码，输出变量x的标识。输出结果如下</p>
+<p>  11229424</p>
+</li>
+<li><p>第4行代码再次定义了一个x的变量，该变量的初始值为2。该变量与前面的变量x并不是同一变量</p>
+</li>
+<li><p>第5行代码，输出变量x的标识。输出结果如下</p>
+<p>  11229412</p>
+</li>
+</ul>
+<p>如果变量没有赋值，Python将认为变量不存在</p>
+<p>2.3.3  局部变量</p>
+<p>   局部变量是只能在函数或代码段内使用的变量。函数或代码段一旦结束，局部变量的生命周期就结束。局部变量的作用范围只在被创建的函数内有效。例如，文件1的fun()中定义了一个局部变量，则该局部变量只能被fun()访问，而不能被fun2()访问，也不能被文件2访问。</p>
+<pre><code>#局部变量
+def fun():
+    local = 1
+    print(local)
+fun()
+</code></pre><p>代码说明</p>
+<ul>
+<li>第二行代码定义了一个函数fun()</li>
+<li>第3行代码定义了一个局部变量local</li>
+<li><p>第4行代码输出local的值，输出结果如下</p>
+<p>  1</p>
+</li>
+</ul>
+<ul>
+<li>第5行代码调用函数fun()。此时已超出local变量的作用范围</li>
+</ul>
+<p>2.3.4 全局变量</p>
+<pre><code>全局变量是能够被不同的函数、类或文件共享的变量，在函数之外定义的变量都可以称为全局变量。全局变量可以被文件内部的任何函数和外部文件访问。例如，如果文件1定义了一个全局变量，文件1中的函数fun()可以访问该全局变量，此外，该全局变量也能被文件1、文件2访问
+</code></pre><p><img src="/2019/06/03/Python/第2章-Python必须知道成的基础语法/第2章-Python必须知道成的基础语法.png" alt></p>
+<p>   全局变量通常在文件的开始处定义，下面定义了两个全局变量 _ a 、_b 和add()、sub()，这两个函数将调用全局变量执行加法和减法计算</p>
+<pre><code>#在文件开头定义全局变量
+_a = 1
+_b = 2
+def add():
+    global _a
+    _a = 3
+    return &quot;_a + b =&quot;,_a + _b
+def sub():
+    global _b
+    _b = 4
+    return &quot;_a + _b&quot;,_a - _b
+print (add())
+print(sub())
+</code></pre><p>代码说明</p>
+<ul>
+<li>第2行代码定义了一个名为_a的全局变量，这个变量的作用范围从定义处到文件的结尾。之所以使用下划线是为了区分于其他变量，引起对全局变量出现的重视</li>
+<li>第3行代码定义了一个名为 _b的全局变量。同样__b的作用范围从定义处到文件的结尾</li>
+<li>第4行代码定义了一个函数add()，用于执行加法计算</li>
+<li>第5行代码引用了全局变量_a。这里使用global关键字，global用于引用全局变量</li>
+<li>第6行代码对全局变量_a重新赋值</li>
+<li>第7行代码返回_a  + _b的值</li>
+<li>第8行代码定义了一个函数sub()，用于执行加减法运算。函数内的实现方式和add()相同</li>
+</ul>
+<p>涉及函数</p>
+<pre><code>global 关键字允许你修改当前范围之外的变量。它用于创建全局变量并在本地上下文中更改变量。可以理解为调用全局变量
+</code></pre><p>例子：</p>
+<pre><code>c = 0                        #定义全局变量c
+d = 2                        #定义全局变量d
+def add():                    #定义add()函数，用于加法计算
+    global c                #程序实现的功能内容
+    c = c + 2
+    print(&quot;Insid add():&quot;,c) #输出add()函数
+
+add()                        #引用完成全局变量，局部变量结束
+
+def sub():
+    global d
+    d = d + 2
+    print(&quot;In main:&quot;,d)
+sub()
+</code></pre><p>注意：</p>
+<pre><code>变量名相同的两个变量可能并不是同一变量，变量的名称只是起标识的作用变量出现的位置不同，变量的含义也不同
+</code></pre><p>可以把全局变量放到专门文件，创建一个名为gl.py的文件</p>
+<pre><code>#全局变量
+_a = 1
+_b = 2
+</code></pre><p>也可调用模块调用全局变量</p>
+<pre><code>#调用全局变量
+import gl
+_a = 1
+_b = 2
+def fun():
+    print(gl._a)
+    print(gl._b)
+fun()
+</code></pre><p>代码说明</p>
+<ul>
+<li>第2行代码导入前面创建的文件gl.py,即模块gl</li>
+<li>第3行代码定义函数fun(),该函数调用全局变量_a 和 _b。这里不需要global,引用gl.py中的全局变量。使用前导符定位</li>
+</ul>
+<p>2.3.5  常量</p>
+<p>常量是指一旦初始化后就不能改变的变量，例如数字 1、字符串“abc”都是常量</p>
+<p>定于常量模块const</p>
+<pre><code>class _const:
+    class ConstError(TypeError):pass
+    def __setattr__(self,name,value):
+        if self.__dict__.has_key(name):
+            raise self.ConstError, &quot;Can&apos;t rebind const(%s)&quot; %name
+        self.__dict__[name]=value
+import sys
+sys.modules[__name__]=_const()
+</code></pre><p>代码说明</p>
+<ul>
+<li>这个类定义了一个方法<strong> setattr()和一个异常类型ConstError,    ConstError类继承自TypeError。通常调用字典 </strong> dict __,判断定义的常量是否包含在字典中，如果字典包含此常量，将抛出异常。否则，给新创建的常量赋值</li>
+<li>最后两行代码的作用是把const类注册到sys.modules这个全局字典中</li>
+</ul>
+<p>调用const函数</p>
+<pre><code>import const
+const.magic = 23
+const.magic = 33
+</code></pre><ul>
+<li>第3行代码修改常量magic的值，抛出异常</li>
+</ul>
+<p>涉及函数</p>
+<p>sys模块</p>
+<pre><code>1: sys是python自带模块. 
+利用 import 语句输入sys 模块。 
+当执行import sys后, python在 sys.path 变量中所列目录中寻找 sys 模块文件。
+
+sys.argv: 实现从程序外部向程序传递参数。
+sys.exit([arg]): 程序中间的退出，arg=0为正常退出。
+sys.getdefaultencoding(): 获取系统当前编码，一般默认为ascii。
+sys.setdefaultencoding(): 设置系统默认编码，执行dir（sys）时不会看到这个方法，在解释器中执行不通过，可以先执行reload(sys)，在执行 setdefaultencoding(&apos;utf8&apos;)，此时将系统默认编码设置为utf8。（见设置系统默认编码 ）
+sys.getfilesystemencoding(): 获取文件系统使用编码方式，Windows下返回&apos;mbcs&apos;，mac下返回&apos;utf-8&apos;.
+sys.path: 获取指定模块搜索路径的字符串集合，可以将写好的模块放在得到的某个路径下，就可以在程序中import时正确找到。
+sys.platform: 获取当前系统平台。
+sys.stdin,sys.stdout,sys.stderr: stdin , stdout , 以及stderr 变量包含与标准I/O 流对应的流对象. 如果需要更好地控制输出,而print 不能满足你的要求, 它们就是你所需要的. 你也可以替换它们, 这时候你就可以重定向输出和输入到其它设备( device ), 或者以非标准的方式处理它们
+</code></pre><p>sys.modules 模块</p>
+<pre><code>Python中所有加载到内存的模块都放在sys.modules。sys.modules是一个全局字典，字典sys.modules对于加载模块起到了缓冲的作用,当import一个模块时首先会在这个列表中查找是否已经加载了此模块，如果加载了则只是将模块的名字加入到正在调用import的模块的Local名字空间中。当第二次再导入该模块时，python会直接到字典中查找，从而加快了程序运行的速度。件，模块文件可以是py、pyc、pyd，找到后将模块载入内存，并加入到sys.modules中，并将名称导入到当前的Local名字空间。
+</code></pre>
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/06/03/Python/第2章 Python必须知道的基础语法--数据类型/" title="第2章 Python必须知道的基础语法--数据类型">
+                    <div class="nextTitle">第2章 Python必须知道的基础语法--数据类型</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/06/03/WEB题-bugku/SQL注入测试/" title="SQL注入1(已挂)">
+                    <div class="prevTitle">SQL注入1(已挂)</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY4MC8yMDIyMA==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1847081353@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:95vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 30
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/2019/07/06/练习日记/7-6知识点/7-6知识点/">7.6知识点</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/2019/07/06/hexo文章密码解决方案/">hexo密码设置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/2019/07/06/漏洞复现/docker搭建tomcat7.0.79   PUT利用远程代码执行漏洞环境（CVE-2017-12615）/">(CVE-2017-12615)docker搭建tomcat7.0.79  以及PUT利用远程代码执行漏洞环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/Python/第2章-Python必须知道成的基础语法/">第2章 Python必须知道成的基础语法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/Python/第2章 Python必须知道的基础语法--数据类型/">第2章 Python必须知道的基础语法--数据类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/Python/第1章 进入Python的世界/">第1章 进入Python的世界</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/Python/零基础学Python/">零基础学Python</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/变量1/">变量1-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/Python/一些辅助脚本/">Python辅助脚本集合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/点击一百万次/">点击一百万次-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/1.WEB2/">WEB题--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/矛盾/">矛盾-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_POST/">web基础$_POST-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/管理员系统/">管理员系统-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/flag值在index里/">flag值在index中--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/网站被黑/">网站被黑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB基础$_GET/">WEB基础$_GET-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB3/">WEB3-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/SQL注入测试/">SQL注入1(已挂)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB5/">WEB5-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/2.计算器/">计算器--bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/输入密码查看flag/">输入密码查看flag-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/本地包含/">本地包含-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/WEB4/">WEB4-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/你必须让他停下/">你必须让他停下-bugku</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/域名解析/">域名解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/WEB题-bugku/头等舱·/">头等舱</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/25</span><a class="archive-post-title" href="/2019/04/25/入坑/">致自己和还在努力的人</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2019/04/20/WEB题-bugku/WEB进阶-实战2注入/">WEB实战注入</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href="/2016/03/30/hello-world/">hello world</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="测试"><span class="iconfont-archer">&#xe606;</span>测试</span>
+    
+        <span class="sidebar-tag-name" data-tags="入坑"><span class="iconfont-archer">&#xe606;</span>入坑</span>
+    
+        <span class="sidebar-tag-name" data-tags="博客优化"><span class="iconfont-archer">&#xe606;</span>博客优化</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="漏洞复现"><span class="iconfont-archer">&#xe606;</span>漏洞复现</span>
+    
+        <span class="sidebar-tag-name" data-tags="练习日记"><span class="iconfont-archer">&#xe606;</span>练习日记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="入坑"><span class="iconfont-archer">&#xe60a;</span>入坑</span>
+    
+        <span class="sidebar-category-name" data-categories="博客优化"><span class="iconfont-archer">&#xe60a;</span>博客优化</span>
+    
+        <span class="sidebar-category-name" data-categories="Python"><span class="iconfont-archer">&#xe60a;</span>Python</span>
+    
+        <span class="sidebar-category-name" data-categories="CTF"><span class="iconfont-archer">&#xe60a;</span>CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="漏洞复现"><span class="iconfont-archer">&#xe60a;</span>漏洞复现</span>
+    
+        <span class="sidebar-category-name" data-categories="练习日记"><span class="iconfont-archer">&#xe60a;</span>练习日记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Fengsir"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Fengsir">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Fengsir">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Centos6.5 安装 mysql5.7 · Fxsir的工作室</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Fxsir的工作室.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Centos6.5 安装 mysql5.7</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Fxsir的工作室.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:95vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random/1920x1080)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Centos6.5 安装 mysql5.7
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="linux笔记">linux笔记</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2022/01/17</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Centos6-5-安装-mysql5-7"><a href="#Centos6-5-安装-mysql5-7" class="headerlink" title="Centos6.5 安装 mysql5.7"></a>Centos6.5 安装 mysql5.7</h1><h5 id="根据题目有如下要求"><a href="#根据题目有如下要求" class="headerlink" title="根据题目有如下要求"></a>根据题目有如下要求</h5><h5 id="1-比赛提供mysql5-7压缩安装包，需要选手解压"><a href="#1-比赛提供mysql5-7压缩安装包，需要选手解压" class="headerlink" title="1.比赛提供mysql5.7压缩安装包，需要选手解压"></a>1.比赛提供mysql5.7压缩安装包，需要选手解压</h5><h5 id="2-利用wegt-yum-rpm命令来就进行检测和安装"><a href="#2-利用wegt-yum-rpm命令来就进行检测和安装" class="headerlink" title="2.利用wegt yum rpm命令来就进行检测和安装"></a>2.利用wegt yum rpm命令来就进行检测和安装</h5><h5 id="3-比赛版本为centos6-5"><a href="#3-比赛版本为centos6-5" class="headerlink" title="3.比赛版本为centos6.5"></a>3.比赛版本为centos6.5</h5><h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><h4 id="1-安装时-使用命令进行解压"><a href="#1-安装时-使用命令进行解压" class="headerlink" title="1.安装时:使用命令进行解压"></a>1.安装时:使用命令进行解压</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1、*.tar 用 tar -xvf 解压</span><br><span class="line"></span><br><span class="line">2、*.gz 用 gzip -d或者gunzip 解压</span><br><span class="line"></span><br><span class="line">3、*.tar.gz和*.tgz 用 tar -xzf 解压</span><br><span class="line"></span><br><span class="line">4、*.bz2 用 bzip2 -d或者用bunzip2 解压</span><br><span class="line"></span><br><span class="line">5、*.tar.bz2用tar -xjf 解压</span><br><span class="line"></span><br><span class="line">6、*.Z 用 uncompress 解压</span><br><span class="line"></span><br><span class="line">7、*.tar.Z 用tar -xZf 解压</span><br><span class="line"></span><br><span class="line">8、*.rar 用 unrar e解压</span><br><span class="line"></span><br><span class="line">9、*.zip 用 unzip 解压</span><br></pre></td></tr></table></figure>
+<h5 id="tar的解压命令详细解析"><a href="#tar的解压命令详细解析" class="headerlink" title="tar的解压命令详细解析"></a>tar的解压命令详细解析</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">tar [option] [modifiers] [file-list]</span><br><span class="line"></span><br><span class="line">参数</span><br><span class="line">file-list是tar进行归档和提取的文件路径名列表</span><br><span class="line">选项</span><br><span class="line">只能使用下面的某一个选项来指定tar要执行的动作。可以通过在选项后面跟一个或多个修饰符来改变该选项的行为</span><br><span class="line"></span><br><span class="line">-c            创建归档文件</span><br><span class="line"></span><br><span class="line">-u            将file-list中的文件添加到归档文件</span><br><span class="line"></span><br><span class="line">-x            从归档文件中提取file-list并把它写入磁盘</span><br><span class="line"></span><br><span class="line">修饰符</span><br><span class="line"></span><br><span class="line">-C dir                      在进行处理之前将工作目录切换到dir指定的目录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-f filename              使用filename来指出要创建或从中提取的归档文件的文件名</span><br><span class="line"></span><br><span class="line">-j                             在创建归档文件或从归档文件中提取文件时，使用bzip2方式来进行压缩和解压缩</span><br><span class="line"></span><br><span class="line">-z                            在创建归档文件或从归档文件中提取文件时，使用gzip方式来进行压缩和解压缩</span><br><span class="line"></span><br><span class="line">-v                            列出tar读或写的每一个文件</span><br><span class="line"></span><br><span class="line">-t                             列出归档文件中的目录</span><br><span class="line"></span><br><span class="line">-u                            更新归档文件</span><br></pre></td></tr></table></figure>
+<p><strong>简单理解就是这样：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-c: 建立压缩档案</span><br><span class="line">-x：解压</span><br><span class="line">-t：查看内容</span><br><span class="line">-r：向压缩归档文件末尾追加文件</span><br><span class="line">-u：更新原压缩包中的文件</span><br><span class="line"></span><br><span class="line">下面的参数-f是必须的</span><br><span class="line"></span><br><span class="line">-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</span><br><span class="line"></span><br><span class="line">-z：有gzip属性的</span><br><span class="line">-j：有bz2属性的</span><br><span class="line">-Z：有compress属性的</span><br><span class="line">-v：显示所有过程</span><br><span class="line">-O：将文件解开到标准输出</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">通过简单的学习，了解后会发现tar命令既可以“打包文件”也可以“解压文件”</span><br><span class="line">通俗一点就是 </span><br><span class="line">添加x参数就是解压</span><br><span class="line">添加c就是打包</span><br><span class="line"></span><br><span class="line">tar -cvf</span><br><span class="line">将a b c打包成一个名为demo.tar的归档文件，并显示打包的文件</span><br><span class="line">后缀名tar用于标识文件类型</span><br><span class="line"></span><br><span class="line">tar -zxvf</span><br><span class="line">将a b c 三文件用gzip的方式打包并压缩成demo.tar.gz</span><br><span class="line"></span><br><span class="line">tar -jxvf -C（记住这个参数）</span><br><span class="line">解压缩归档文件到指定目录</span><br><span class="line">siu@Darling ~/work $ tar -jxvf demo.tar.bz2 -C ./dir</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">siu@Darling ~/work $ ls</span><br><span class="line">demo.tar.bz2  dir</span><br><span class="line">siu@Darling ~/work $ ls dir</span><br><span class="line">a  b  c</span><br><span class="line">siu@Darling ~/work $</span><br></pre></td></tr></table></figure>
+<h4 id="开始安装mysql"><a href="#开始安装mysql" class="headerlink" title="开始安装mysql"></a>开始安装mysql</h4><h5 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a>实验准备</h5><p><strong>1.mysql5.7安装包</strong></p>
+<p><strong>2.Centos6.5 Linux环境（我使用的是Centos7，原理和命令一样）</strong></p>
+<p><strong>实验开始：</strong></p>
+<p><strong>1.将mysql安装包准备好</strong></p>
+<p>能够看到是tar后缀，使用tar解压命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql]# tar -xvf mysql-5.7.16-1.el7.x86_64.rpm-bundle.tar</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130231002984.png" alt="image-20211130231002984"></p>
+<p><strong>2.但是题目要求到指定的文件夹</strong></p>
+<p>我是自己创建了一个指定目录，根据比赛要求进行解压安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql]# tar -xvf mysql-5.7.16-1.el7.x86_64.rpm-bundle.tar -C /usr/local/mysql</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130231558210.png" alt="image-20211130231558210"></p>
+<p><strong>3.解压完成</strong></p>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130231853852.png" alt="image-20211130231853852"></p>
+<p>注意下细节</p>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130232333163.png" alt="image-20211130232333163"></p>
+<h4 id="4-安装"><a href="#4-安装" class="headerlink" title="4.安装"></a><strong>4.安装</strong></h4><p><strong>yum命令或者rpm依赖命令进行安装mysql客户端和服务端</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">主要以yum 和 rpm依赖安装详细命令自己查询手册进行学习，宿舍断电了，不一一细说了</span><br></pre></td></tr></table></figure>
+<h1 id="yum安装"><a href="#yum安装" class="headerlink" title="yum安装"></a>yum安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">在/usr/local/mysql下安装mysql</span><br><span class="line">安装服务器端：yum install MySQL-server-5.6.22-1.el6.i686.rpm</span><br><span class="line">安装客户端：yum install MySQL-client-5.6.22-1.el6.i686.rpm</span><br><span class="line">启动MySQL服务</span><br><span class="line"></span><br><span class="line">service mysql start</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1、登录mysql：</span><br><span class="line">查看默认密码</span><br><span class="line"></span><br><span class="line">grep &apos;temporary password&apos; /var/log/mysqld.log </span><br><span class="line"></span><br><span class="line">使用默认密码登录</span><br><span class="line"></span><br><span class="line">mysql安装好后会生成一个临时随机密码，存储位置在/root/.mysql_secret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">msyql –u root -p默认密码</span><br><span class="line"></span><br><span class="line">2、修改mysql的密码</span><br><span class="line"></span><br><span class="line">set password = password(&apos;root&apos;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3、开启mysql的远程登录</span><br><span class="line">默认情况下mysql为安全起见，不支持远程登录mysql，所以需要设置开启 远 程登录mysql的权限</span><br><span class="line">登录mysql后输入如下命令：</span><br><span class="line"></span><br><span class="line">grant all privileges on *.* to &apos;root&apos; @&apos;%&apos; identified by &apos;root&apos;;</span><br><span class="line"></span><br><span class="line">flush privileges;（刷新一下）</span><br></pre></td></tr></table></figure>
+<h1 id="rpm依赖安装"><a href="#rpm依赖安装" class="headerlink" title="rpm依赖安装"></a>rpm依赖安装</h1><p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130233611835.png" alt="image-20211130233611835"></p>
+<p>依次输入</p>
+<h4 id="1-检查当前系统是否安装过mysql"><a href="#1-检查当前系统是否安装过mysql" class="headerlink" title="1.检查当前系统是否安装过mysql"></a>1.检查当前系统是否安装过mysql</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mariadb</span><br></pre></td></tr></table></figure>
+<p>如果存在如下：</p>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130234653383.png" alt="image-20211130234653383"></p>
+<p>请执行以下卸载命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e --nodeps  mariadb-libs</span><br></pre></td></tr></table></figure>
+<h4 id="2-检查当前mysql依赖环境"><a href="#2-检查当前mysql依赖环境" class="headerlink" title="2.检查当前mysql依赖环境"></a>2.检查当前mysql依赖环境</h4><p>执行安装命令前，先执行查询命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep libaio</span><br></pre></td></tr></table></figure>
+<p>如果存在libaio包如下：</p>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130234814083.png" alt="image-20211130234814083"></p>
+<p>在执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep net-tools</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130234933665.png" alt="image-20211130234933665"></p>
+<h4 id="3-依次执行（几个包有依赖关系，所以执行有先后）下面命令安装：（重要）"><a href="#3-依次执行（几个包有依赖关系，所以执行有先后）下面命令安装：（重要）" class="headerlink" title="3.依次执行（几个包有依赖关系，所以执行有先后）下面命令安装：（重要）"></a>3.依次执行（几个包有依赖关系，所以执行有先后）下面命令安装：（重要）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-linux ~]# rpm -ivh mysql-community-common-5.7.16-1.el7.x86_64.rpm</span><br><span class="line">[root@centos-linux ~]# rpm -ivh mysql-community-libs-5.7.16-1.el7.x86_64.rpm</span><br><span class="line">[root@centos-linux ~]# rpm -ivh mysql-community-client-5.7.16-1.el7.x86_64.rpm</span><br><span class="line">[root@centos-linux ~]# rpm -ivh mysql-community-server-5.7.16-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130235133825.png" alt="image-20211130235133825"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查看一下版本</span><br><span class="line">[root@localhost mysql]# mysqladmin --version</span><br><span class="line">mysqladmin  Ver 8.42 Distrib 5.7.16, for Linux on x86_64</span><br></pre></td></tr></table></figure>
+<h2 id="MySQL服务的初始化"><a href="#MySQL服务的初始化" class="headerlink" title="MySQL服务的初始化"></a>MySQL服务的初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为了保证数据库目录为与文件的所有者为 mysql 登陆用户，如果你是以 root 身份运行 mysql 服务，需要执行下面的命令初始化</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize --user=mysql</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：另外 –initialize 选项默认以“安全”模式来初始化，则会为 root 用户生成一个密码并将该密码标记为过期，登陆后你需要设置一个新的密码。</p>
+<p><strong>查看密码：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211130235551066.png" alt="image-20211130235551066"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost: 后面就是初始化的密码</span><br></pre></td></tr></table></figure>
+<h2 id="MySQL-服务的启与停"><a href="#MySQL-服务的启与停" class="headerlink" title="MySQL 服务的启与停"></a>MySQL 服务的启与停</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装完以后记得开启服务</span><br></pre></td></tr></table></figure>
+<p><strong>启动</strong>：<code>systemctl start mysqld.service</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看下安装后端口是否存在</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211201000439574.png" alt="image-20211201000439574"></p>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/2.png" alt="image-20201210162831231"></p>
+<p><strong>关闭：</strong><code>systemctl stop mysqld.service</code></p>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/3.png" alt="image-20201210162921994"></p>
+<h4 id="首次登陆通过-mysql-uroot-p进行登录，在Enter-password：录入初始化密码"><a href="#首次登陆通过-mysql-uroot-p进行登录，在Enter-password：录入初始化密码" class="headerlink" title="首次登陆通过 mysql -uroot -p进行登录，在Enter password：录入初始化密码"></a>首次登陆通过 <strong>mysql -uroot -p</strong>进行登录，在Enter password：录入初始化密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p默认密码（刚刚查看到的密码日志）</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/1.png" alt="image-20201210163133832"></p>
+<p><strong>因为初始化密码默认是过期的，所以查看数据库会报错</strong></p>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211201001013184.png" alt="image-20211201001013184"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p 进入</span><br><span class="line">输入密码</span><br><span class="line">m-CpG;1%*6kx（这是随机生成的，也是初始码，上面的步骤说过）</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/image-20211201000932528.png" alt="image-20211201000932528"></p>
+<h3 id="修改密码即可，正常使用（必须修改！）"><a href="#修改密码即可，正常使用（必须修改！）" class="headerlink" title="修改密码即可，正常使用（必须修改！）"></a>修改密码即可，正常使用（必须修改！）</h3><p>具体后面细节查看csdn博客</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/qq_45738810/article/details/110957141</span><br><span class="line">https://blog.csdn.net/hanimashi/article/details/53225025</span><br><span class="line">https://www.cnblogs.com/yangchunlong/p/8477743.html</span><br><span class="line">https://blog.csdn.net/weixin_42340740/article/details/82779191?utm_source=app&amp;app_version=4.19.0&amp;code=app_1562916241&amp;uLinkId=usr1mkqgl919blen</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2022/01/17/Linux笔记/其他基础命令/其他基础命令/" title="Linux其他基础命令">
+                    <div class="nextTitle">Linux其他基础命令</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2022/01/17/Linux笔记/vsftpd安装/vsftpd安装/" title="vsftpd安装">
+                    <div class="prevTitle">vsftpd安装</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY4MC8yMDIyMA==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1847081353@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:95vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Centos6-5-安装-mysql5-7"><span class="toc-number">1.</span> <span class="toc-text">Centos6.5 安装 mysql5.7</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#根据题目有如下要求"><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">根据题目有如下要求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-比赛提供mysql5-7压缩安装包，需要选手解压"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">1.比赛提供mysql5.7压缩安装包，需要选手解压</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-利用wegt-yum-rpm命令来就进行检测和安装"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">2.利用wegt yum rpm命令来就进行检测和安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-比赛版本为centos6-5"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">3.比赛版本为centos6.5</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方法"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装时-使用命令进行解压"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">1.安装时:使用命令进行解压</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#tar的解压命令详细解析"><span class="toc-number">1.0.0.2.1.</span> <span class="toc-text">tar的解压命令详细解析</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开始安装mysql"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">开始安装mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#实验准备"><span class="toc-number">1.0.0.3.1.</span> <span class="toc-text">实验准备</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-安装"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">4.安装</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#yum安装"><span class="toc-number">2.</span> <span class="toc-text">yum安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rpm依赖安装"><span class="toc-number">3.</span> <span class="toc-text">rpm依赖安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-检查当前系统是否安装过mysql"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">1.检查当前系统是否安装过mysql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-检查当前mysql依赖环境"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">2.检查当前mysql依赖环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-依次执行（几个包有依赖关系，所以执行有先后）下面命令安装：（重要）"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">3.依次执行（几个包有依赖关系，所以执行有先后）下面命令安装：（重要）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL服务的初始化"><span class="toc-number">3.1.</span> <span class="toc-text">MySQL服务的初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-服务的启与停"><span class="toc-number">3.2.</span> <span class="toc-text">MySQL 服务的启与停</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#首次登陆通过-mysql-uroot-p进行登录，在Enter-password：录入初始化密码"><span class="toc-number">3.2.0.1.</span> <span class="toc-text">首次登陆通过 mysql -uroot -p进行登录，在Enter password：录入初始化密码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改密码即可，正常使用（必须修改！）"><span class="toc-number">3.2.1.</span> <span class="toc-text">修改密码即可，正常使用（必须修改！）</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 4
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2022 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href="/2022/01/17/Linux笔记/其他基础命令/其他基础命令/">Linux其他基础命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href="/2022/01/17/Linux笔记/Web Apache安装---httpd服务/Web Apache安装---httpd服务/">Web Apache安装---httpd服务</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href="/2022/01/17/Linux笔记/vsftpd安装/vsftpd安装/">vsftpd安装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href="/2022/01/17/Linux笔记/Centos6-5-安装-mysql5-7/Centos6-5-安装-mysql5-7/">Centos6.5 安装 mysql5.7</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="linux笔记"><span class="iconfont-archer">&#xe606;</span>linux笔记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Linux"><span class="iconfont-archer">&#xe60a;</span>Linux</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Fengsir"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>

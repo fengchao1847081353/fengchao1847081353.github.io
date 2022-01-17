@@ -409,7 +409,7 @@ height:95vh;
 <h4 id="2-挂载光盘"><a href="#2-挂载光盘" class="headerlink" title="2.挂载光盘"></a>2.挂载光盘</h4><p><strong>创建挂载文件</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost fxsir]# mkdir /dvd</span><br><span class="line">[root@localhost fxsir]# mount /dev/cdrom /dvd</span><br><span class="line">mount: /dev/sr0 写保护，将以只读方式挂载</span><br></pre></td></tr></table></figure>
 <p> <strong>需要修改备份挂载文件，进行写入修改</strong></p>
-<p><strong>vim dvd.repo</strong></p>
+<p><strong>2.vim dvd.repo</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d/</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir backup/           #创建备份目录</span><br><span class="line">mv *.* backup/          #移动目录</span><br><span class="line">vim dvd.repo            #修改repo文件s</span><br><span class="line">[dvd]</span><br><span class="line">name=dvd</span><br><span class="line">baseurl=file:///dvd</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
 <p>测试yum</p>
